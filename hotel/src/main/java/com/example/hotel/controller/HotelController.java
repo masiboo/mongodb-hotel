@@ -45,6 +45,33 @@ public class HotelController {
         return hotelService.unapproved();
     }
 
+    @GetMapping("/ne")
+    public List<Hotel> notEqual(@RequestParam String name){
+        return hotelService.notEqual(name);
+    }
+
+    @GetMapping("/eq")
+    public List<Hotel> nameEqual(@RequestParam String name){
+        return hotelService.nameEqual(name);
+    }
+
+    @GetMapping("/startm")
+    public List<Hotel> findHotelStartWithM(){
+        return hotelService.findNameStartWithM();
+    }
+
+    @GetMapping("/starte")
+    public List<Hotel> findHotelStartWithE(){
+        return hotelService.findNameStartWithE();
+    }
+
+    @DeleteMapping("/dele")
+    public List<Hotel> deleteHotelWithE(){
+        return hotelService.deleteHotelWithE();
+    }
+
+
+
     @PostMapping("/save")
     public Hotel save(@RequestBody Hotel hotel){
         return hotelService.save(hotel);

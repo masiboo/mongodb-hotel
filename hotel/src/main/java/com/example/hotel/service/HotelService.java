@@ -73,4 +73,32 @@ public class HotelService {
         var result = mongoTemplate.find(query, Hotel.class);
         return result;
     }
+
+    public List<Hotel> notEqual(String name) {
+        Query query = new Query()
+                .addCriteria(Criteria.where("name").ne(name));
+
+        var result = mongoTemplate.find(query, Hotel.class);
+        return result;
+    }
+
+    public List<Hotel> nameEqual(String name) {
+        Query query = new Query()
+                .addCriteria(Criteria.where("name").is(name));
+
+        var result = mongoTemplate.find(query, Hotel.class);
+        return result;
+    }
+
+    public List<Hotel> findNameStartWithM() {
+        return hotelRepository.findNameStartWithM();
+    }
+
+    public List<Hotel> findNameStartWithE() {
+        return hotelRepository.findNameStartWithE();
+    }
+
+    public List<Hotel> deleteHotelWithE() {
+        return hotelRepository.deleteNameWithE();
+    }
 }
