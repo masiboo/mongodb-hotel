@@ -2,6 +2,7 @@ package com.example.hotel.controller;
 
 import com.example.hotel.model.Hotel;
 import com.example.hotel.service.HotelService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,6 +64,16 @@ public class HotelController {
     @GetMapping("/starte")
     public List<Hotel> findHotelStartWithE(){
         return hotelService.findNameStartWithE();
+    }
+
+    @GetMapping("/page")
+    public Page<Hotel> getPage(int page, int size ){
+        return hotelService.getPage(page, size);
+    }
+
+    @GetMapping("/price-range")
+    public List<Hotel> findByPricePerNightBetween(@RequestParam int start, @RequestParam int end ){
+        return hotelService.findByPricePerNightBetween(start, end);
     }
 
     @DeleteMapping("/dele")

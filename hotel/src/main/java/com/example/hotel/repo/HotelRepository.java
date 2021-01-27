@@ -27,4 +27,6 @@ public interface HotelRepository extends MongoRepository<Hotel, String> {
     @Query(value = "{'name': {$regex: '^E.*'} }", delete = true)
     public List<Hotel> deleteNameWithE();
 
+    List<Hotel> findByPricePerNightBetween(int start, int end);
+
 }

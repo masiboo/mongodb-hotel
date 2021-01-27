@@ -2,6 +2,9 @@ package com.example.hotel.service;
 
 import com.example.hotel.model.Hotel;
 import com.example.hotel.repo.HotelRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -100,5 +103,16 @@ public class HotelService {
 
     public List<Hotel> deleteHotelWithE() {
         return hotelRepository.deleteNameWithE();
+    }
+
+    public Page<Hotel> getPage(int page, int size){
+        final Pageable pageableRequest = PageRequest.of(page, size);
+        var pageHotel = hotelRepository.findAll(pageableRequest);
+        return pageHotel;
+    }
+
+    public List<Hotel> findByPricePerNightBetween(int start, int end){
+        var res = hotelRepository.findByPricePerNightBetween(start, end);
+        return res;
     }
 }
