@@ -105,6 +105,10 @@ public class HotelService {
         return hotelRepository.deleteNameWithE();
     }
 
+    public void deleteAll(){
+        mongoTemplate.dropCollection("Hotels");
+    }
+
     public Page<Hotel> getPage(int page, int size){
         final Pageable pageableRequest = PageRequest.of(page, size);
         var pageHotel = hotelRepository.findAll(pageableRequest);
